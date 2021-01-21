@@ -13,7 +13,7 @@ function App () {
             <Title/>
             <UploadForm />
             <Display setSelected={setSelected} />
-            <Large selected={selected} />
+            { selected && <Large selected={selected} setSelected={setSelected}  /> }
         </div>
     );
 }

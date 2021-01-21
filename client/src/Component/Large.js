@@ -1,10 +1,21 @@
-import React from 'react'
+import React from 'react';
+import { motion } from "framer-motion";
 
-const Large = ({selected}) => {
+const Large = ({ selected, setSelected }) => {
+
+    const hundleClick = (e) => {
+        if(e.target.classList.contains("large")){
+        setSelected(null);
+    }
+    }
+
     return (
-        <div className="large">
+        <motion.div className="large" onClick={hundleClick}
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        >
             <img src={ selected } alt="large pic" />
-        </div>
+        </motion.div>
     )
 }
 
