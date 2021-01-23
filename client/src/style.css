@@ -119,3 +119,18 @@ body{
     box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
     border: 3px solid white;
   }
+
+  .search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .search input{
+    margin-top: 20px;
+    width: 300px;
+    height: 30px;
+    font-size: 15px;
+    padding-left: 10px;
+  }

@@ -1,25 +1,32 @@
-import React from 'react';
-import useFirestore from '../hook/useFireStore'
-import { motion } from "framer-motion";
+import React from "react";
+import useFirestore from '../hook/useFireStore';
+import SRLWrapper from "simple-react-lightbox";
 
-const Display = ({ setSelected }) => {
+
+const Display = ({ setSelected , term}) => {
     const { docs } = useFirestore('images');
+    
     console.log(docs)
     return (
+        <SRLWrapper>
         <div className="grid">
-            { docs && docs.map(doc => (
-                <motion.div className="show" key={doc.id} 
-                layout
-                whileHover={{opacity:1}}
+            { docs.filter((doc) => {
+                if (term === ""){
+                    return doc
+                }else if (doc.url.toLowerCase().includes(term.toLowerCase())){
+                    return doc.url.toLowerCase().includes(term())
+                }
+                return "not availble"
+            }).map(doc => ( 
+                <div className="show" key={doc.id} 
                 onClick={() => setSelected(doc.url) }>
-                    <motion.img src={doc.url} alt= "image uploaded"
-                    initial={{opacity:0}}
-                    animate={{opacity:1}}
-                    transition={{delay:1}}
-                    />
-                </motion.div>
+                    
+                    <img src={doc.url} alt= "uploaded" />
+                    
+                </div>
             ))}
         </div>
+        </SRLWrapper>
     )
 }
 
